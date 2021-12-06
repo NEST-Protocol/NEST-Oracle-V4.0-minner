@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Mine machine configuration</title>
+    <link th:href="@{/webjars/bootstrap/3.4.1/css/bootstrap.css}" rel="stylesheet">
+    <script type="text/javascript" th:src="@{/webjars/jquery/3.5.1/jquery.js}"></script>
+    <style>
+
+        body {
+            padding: 30px 50px 30px;
+            min-height: 600px;
+        }
+
+        .line {
+            border-bottom: 0.5px dotted #7c7c7c;
+            width: 550px;
+            padding-bottom: 10px;
+        }
+
+        .form-control {
+            width: 450px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col-lg-12">
+            <label><h4>1. Miner state configuration</h4></label>
+            <p></p>
+            <label>Current miner state ：<span th:text="${minnerState.open?'open':'close'}"></span></label>
+            <button type="button" class="btn btn-primary" onclick="updateMiningState()"
+                    th:text="${minnerState.open?'close':'open'}">
+            </button>
+        </div>
+    </div>
+
+    <div class="row" style="border-top: red 1px dotted ;margin-top: 20px">
+        <div class="col-lg-12">
+            <label><h4>2. Quote Block Interval Configuration</h4></label>
+            <p></p>
+            <label>Current quote block interval ：<span th:text="${minnerState.blockInterval}"></span></label>
+            <p class="line"></p>
+            <p></p>
+            <form class="form-inline" id="updateBlockInterval">
+                <div class="form-group">
+                    <input type="text" class="form-control" id="blockInterval" name="blockInterval"
+                           placeholder="Please fill in the quotation block interval">
+                </div>
+                <button type="submit" class="btn btn-primary" onclick="return updateBlockInterval()">Update quote block interval</button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row" style="border-top: red 1px dotted ;margin-top: 20px">
+        <div class="col-lg-12">
+            <label><h4>3. Batch defrost quantity configuration</h4></label>
+            <p></p>
+            <p></p>
+            <form class="form-inline" id="updateMinnerOtherSetting">
+                <div class="form-group">
+                    <span>Set the minimum quantity of a batch closing quotation:</span>
+                    <input type="text" class="form-control" id="closeMinNum" name="closeMinNum"
+                           th:value="${minnerState.closeMinNum}"
+                           >
+                </div>
+                <button type="submit" class="btn btn-primary" onclick="return updateMinnerOtherSetting()">update
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <div class="row" style="border-top: red 1px dotted ;margin-top: 20px">
+        <div class="col-lg-12">
+            <label><h4>4. Update contract parameters</h4></label>
+            <p></p>
+            <label>If the contract parameters are adjusted and the address is not changed, the mining machine can be shut down in advance and the quotation can be stopped. After the contract parameters are updated, click "Update Parameters" to get the new parameters in the contract again.</label>
+            <button type="button" class="btn btn-primary" onclick="updateParams()">
+                Update Parameters
+            </button>
+        </div>
+    </div>
+</div>
+
+</body>
+
+<script type="text/javascript">
+
+    function updateMiningState() {
+        $.ajax({
+            type: "POST",
+            url: "/minner/updateMiningState",
+            async: false,
+            data: '',
+            success: function (result) {
+                if (result.msg) {
+                    alert(result.msg)
+                }
+                location.replace(location);
+            },
+            error: function (result) {
+                alert("The operation failure")
+            }
+        })
+    }
+
+    function updateParams() {
+        $.ajax({
+            type: "POST",
+            url: "/minner/updateParams",
+            async: false,
+            data: '',
+            success: function (result) {
+                if (result.msg) {
+                    alert(result.msg)
+                }
+                location.replace(location);
+            },
+            error: function (result) {
+                alert("The operation failure")
+            }
+        })
+    }
+
+    function updateMinnerOtherSetting() {
+
+        let val = $('#closeMinNum').val();
+        if (!val) {
+            alert('The quantity of a batch closing quotation cannot be empty');
+            return false;
+        }
+        if (val <= 0) {
+            alert('The number of bulk closing quotes must be greater than 0');
+            return false;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/minner/updateMinnerOtherSetting",
+            async: false,
+            data: $('#updateMinnerOtherSetting').serialize(),
+            success: function (result) {
+                if (result.msg) {
+                    alert(result.msg)
+                }
+                location.replace(location);
+            },
+            error: function (result) {
+                alert("The operation failure")
+            }
+        })
+    }
+
+    function updateBlockInterval() {
+        let val = $('#blockInterval').val();
+        if (!val) {
+            alert('Quotation block interval cannot be empty');
+            return false;
+        }
+        if (val <= 0) {
+            alert('Quote block interval must be greater than 0');
+            return false;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/minner/updateBlockInterval",
+            async: false,
+            data: $('#updateBlockInterval').serialize(),
+            success: function (result) {
+                if (result.msg) {
+                    alert(result.msg)
+                }
+                location.replace(location);
+            },
+            error: function (result) {
+                alert("The operation failure")
+            }
+        })
+    }
+
+</script>
+</html>
+

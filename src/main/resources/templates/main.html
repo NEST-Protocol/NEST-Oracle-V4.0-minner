@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+
+    <link th:href="@{/webjars/bootstrap/3.4.1/css/bootstrap.css}" rel="stylesheet">
+    <script type="text/javascript" th:src="@{/webjars/jquery/3.5.1/jquery.js}"></script>
+    <style>
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #F4F4F4;
+        }
+
+    </style>
+</head>
+<body >
+    <div style="text-align: center;margin-top: 20px;">
+        <label th:text="${title}">Nest automatic quote mining program</label>
+    </div>
+    <div style="height: 100%;margin: 10px 50px 10px;border: darkgray 2px">
+        <div>
+            <ul class="nav nav-pills">
+                <li role="presentation"  class=""th:classappend="${src=='/base'} ? 'active' : '' "><a href="/main?src=base">Basic configuration</a></li>
+                <li role="presentation"  class=""th:classappend="${src=='/gasPrice'} ? 'active' : '' "><a href="/main?src=gasPrice">GasPrie configuration</a></li>
+                <li role="presentation" class=""th:classappend="${src=='/minner'} ? 'active' : '' "><a href="/main?src=minner">Miner configuration</a></li>
+                <li role="presentation" class=""th:classappend="${src=='/withdraw'} ? 'active' : '' "><a href="/main?src=withdraw">Withdrawal of unfrozen assets</a></li>
+            </ul>
+        </div>
+
+        <iframe th:src="${src}" width="100%" height="100%" style="min-height: 620px;"></iframe>
+    </div>
+</body>
+
+<script type="text/javascript">
+
+</script>
+</html>
+

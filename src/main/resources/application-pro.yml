@@ -1,0 +1,20 @@
+spring:
+  thymeleaf:
+    cache: true
+
+nest:
+  # bsc
+  chainId: 56
+  # BSC NEST
+  nestTokenAddress: "0x98f8669f6481ebb341b522fcd3663f79a3d1a6a7"
+  # quote mining contract address
+  nestMiningAddress: "0x09CE0e021195BA2c1CDE62A8B187abf810951540"
+
+  # Calculate the quoted fee ratio
+  miningFeeRateInflateFactor: 10000
+  # Eat single handling fee ratio
+  biteFeeRate: 0
+  # Eat single quoted assets to increase multiple
+  biteInflateFactor: 2
+  # When you eat a single meal, your NEST increases by multiple, doubling every time you eat a single meal, no matter how long you eat a single meal
+  biteNestInflateFactor: 2

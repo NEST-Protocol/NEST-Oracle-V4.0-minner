@@ -1,0 +1,12 @@
+login:
+  name: nest
+  passwd: nestqwe123!
+
+spring:
+  profiles:
+    active: test
+  application:
+    name: minner
+
+server:
+  port: 8088

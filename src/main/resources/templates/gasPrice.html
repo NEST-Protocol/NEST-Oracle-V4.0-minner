@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>GasPrice configuration</title>
+    <link th:href="@{/webjars/bootstrap/3.4.1/css/bootstrap.css}" rel="stylesheet">
+    <script type="text/javascript" th:src="@{/webjars/jquery/3.5.1/jquery.js}"></script>
+    <style>
+
+        body {
+            padding: 30px 50px 30px;
+            min-height: 600px;
+        }
+
+        .line {
+            border-bottom: 0.5px dotted #7c7c7c;
+            width: 550px;
+            padding-bottom: 10px;
+        }
+
+        .form-control {
+            width: 450px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="row" style="border-top: red 1px dotted;margin-top: 20px">
+    <div class="col-lg-12">
+        <label><h4>GasPrice configuration</h4></label>
+        <form class="form-inline" id="updateGasPrice">
+            <div class="form-group line">
+                <label>1. Configuration of quotation GasPrice</label>
+                <br/>
+                <input type="text" class="form-control" id="baseOfferGasPriceMul" name="baseOfferGasPriceMul"
+                       th:value="${gasPriceState.getBaseOfferType().getGasPriceMul()}"
+                       placeholder="Please fill in the quoted transaction GASPRICE multiple">
+            </div>
+            <br/>
+            <p></p>
+            <div class="form-group line">
+                <label>2.Unfreeze the asset GASPrice configuration</label>
+                <br/>
+                <input type="text" class="form-control" id="closeSheetGasPriceMul" name="closeSheetGasPriceMul"
+                       th:value="${gasPriceState.getCloseSheet().getGasPriceMul()}"
+                       placeholder="Please fill in the GASPrice multiple of the unfrozen asset">
+            </div>
+            <br/>
+            <p></p>
+            <div class="form-group line">
+                <label>3. Cancel quote GASPRICE configuration (double quote GASPRICE)</label>
+                <br/>
+                <input type="text" class="form-control" id="cancelOfferGasPriceMul" name="cancelOfferGasPriceMul"
+                       th:value="${gasPriceState.getCancelOfferGasPriceMul()}"
+                       placeholder="Please fill in the Cancel Transaction GASPRICE Multiple">
+            </div>
+            <br/>
+            <p></p>
+            <div class="form-group line">
+                <label>4.Withdraw asset GASPrice configuration</label>
+                <br/>
+                <input type="text" class="form-control" id="withdrawGasPriceMul" name="withdrawGasPriceMul"
+                       th:value="${gasPriceState.getWithdrawType().getGasPriceMul()}"
+                       placeholder="Please fill in the GASPrice multiple of the withdraw asset">
+            </div>
+            <br/>
+            <p></p>
+            <button type="submit" class="btn btn-primary" onclick="return updateGasPrice()">confirm</button>
+        </form>
+    </div>
+</div>
+</body>
+
+<script type="text/javascript">
+
+    function updateGasPrice() {
+        let baseOfferGasPriceMul = $('#baseOfferGasPriceMul').val();
+        if (baseOfferGasPriceMul <= 0) {
+            alert('The quoted GASPrice multiple must be greater than 0');
+            return false;
+        } else if (baseOfferGasPriceMul>10) {
+            if (!confirm("Warning!!!!! The quotation GASPRICE multiple is greater than 10. Should we continue ?")){
+                return false;
+            }
+        }
+
+        let closeSheetGasPriceMul = $('#closeSheetGasPriceMul').val();
+        if (closeSheetGasPriceMul <= 0) {
+            alert('The GasPrice multiple of the unfrozen asset must be greater than 0');
+            return false;
+        } else if (closeSheetGasPriceMul>10) {
+            if (!confirm("Warning!!!!! If the GasPrice multiple of the unfrozen asset is greater than 10, should we continue?")){
+                return false;
+            }
+        }
+
+        let cancelOfferGasPriceMul = $('#cancelOfferGasPriceMul').val();
+        if (cancelOfferGasPriceMul <= 0) {
+            alert('The GasPrice multiple of the Cancel Transaction must be greater than 0');
+            return false;
+        } else if (cancelOfferGasPriceMul>10) {
+            if (!confirm("Warning!!!!! If the GasPrice multiple of the Cancel Transaction is greater than 10, should we continue?")){
+                return false;
+            }
+        }
+
+        let withdrawGasPriceMul = $('#withdrawGasPriceMul').val();
+        if (withdrawGasPriceMul <= 0) {
+            alert('The GasPrice multiple of the withdraw asset Transaction must be greater than 0');
+            return false;
+        } else if (withdrawGasPriceMul>10) {
+            if (!confirm("Warning!!!!! If the GasPrice multiple of the withdraw asset Transaction is greater than 10, should we continue?")){
+                return false;
+            }
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/gasPrice/updateGasPrice",
+            async: false,
+            data: $('#updateGasPrice').serialize(),
+            success: function (result) {
+                if (result.msg) {
+                    alert(result.msg)
+                }
+                location.replace(location);
+            },
+            error: function (result) {
+                alert("The operation failure")
+            }
+        })
+    }
+
+</script>
+</html>
+

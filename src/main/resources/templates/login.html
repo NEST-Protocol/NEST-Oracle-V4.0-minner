@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>user login</title>
+    <link th:href="@{/webjars/bootstrap/3.4.1/css/bootstrap.css}" rel="stylesheet">
+    <style>
+
+        body {
+            margin: 0;
+            padding: 0;
+            background: #F4F4F4;
+        }
+
+        .container {
+            text-align: center;
+            display: flex;
+        }
+
+        .item{
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            width: 350px;
+            height: 250px;
+            align-self: center;
+            margin-left: -170px;
+            margin-top: -130px;
+        }
+        .item button{
+            width: 350px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="item">
+        <form id="login" action="/auth/verify" method="post">
+            <div><p>Nest automatic quote mining program</p></div>
+            <div class="form-group">
+                <input type="text" class="form-control" id="userName" name="userName" placeholder="Please enter a user name">
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control" id="passwd" name="passwd" placeholder="Please enter your password">
+            </div>
+
+            <button type="submit" class="btn btn-primary">login</button>
+        </form>
+
+    </div>
+</div>
+
+</body>
+
+<script type="text/javascript">
+
+</script>
+</html>
+

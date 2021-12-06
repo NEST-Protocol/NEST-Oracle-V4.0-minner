@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="https://www.thymeleaf.org">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Withdrawal of frozen assets</title>
+    <link th:href="@{/webjars/bootstrap/3.4.1/css/bootstrap.css}" rel="stylesheet">
+    <script type="text/javascript" th:src="@{/webjars/jquery/3.5.1/jquery.js}"></script>
+    <style>
+
+        body {
+            padding: 30px 50px 30px;
+            min-height: 600px;
+        }
+
+        input {
+            width: 350px;
+        }
+
+        .form-control {
+            width: 450px;
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="row" style="border-top: red 1px dotted;margin-top: 20px">
+    <div class="col-lg-12">
+        <label>Assets unfrozen under current contracts</label>
+        <p></p>
+        <li>
+
+            <ol th:text="'The amount of unfrozen NEST : '+${close.getNestAmountUnit()}"></ol>
+
+            <ol th:text="'The amount of unfrozen '+${erc20State.token.getSymbol()}+' : '+${close.getTokenAmountUnit(erc20State.token.getDecPowTen())}"></ol>
+
+            <ol th:text="'The amount of unfrozen '+${erc20State.token1.getSymbol()}+' : '+${close.getToken1AmountUnit(erc20State.token1.getDecPowTen())}"></ol>
+        </li>
+        <p></p>
+        <label th:text="'Withdraw '+${erc20State.token.getSymbol()}"></label>
+        <p></p>
+        <form class="form-inline" id="withdrawToken">
+            <div class="form-group">
+                <input type="text" class="form-control" name="tokenAamount"
+                       th:placeholder="'The number of '+${erc20State.token.getSymbol()}">
+            </div>
+            <input type="hidden" th:value="${erc20State.token.getAddress()}" name="tokenAddress"/>
+            <input type="hidden" th:value="${erc20State.token.getDecPowTen()}" name="decimal"/>
+            <button type="submit" class="btn btn-primary" onclick=" return withdrawToken()"
+                    th:text="'Withdraw '+${erc20State.token.getSymbol()}"></button>
+        </form>
+        <p></p>
+        <label th:text="'Withdraw '+${erc20State.token1.getSymbol()}"></label>
+        <p></p>
+        <form class="form-inline" id="withdrawNtoken">
+            <div class="form-group">
+                <input type="text" class="form-control" name="tokenAamount"
+                       th:placeholder="'The number of '+${erc20State.token1.getSymbol()}">
+            </div>
+            <input type="hidden" th:value="${erc20State.token1.getAddress()}" name="tokenAddress"/>
+            <input type="hidden" th:value="${erc20State.token1.getDecPowTen()}" name="decimal"/>
+            <button type="submit" class="btn btn-primary" onclick=" return withdrawToken()"
+                    th:text="'Withdraw '+${erc20State.token1.getSymbol()}"></button>
+        </form>
+        <p></p>
+        <label>Withdraw NEST</label>
+        <p></p>
+        <form class="form-inline" id="withdrawNest">
+            <div class="form-group">
+                <input type="text" class="form-control" name="nestAamount" placeholder="The number of NEST">
+            </div>
+            <button type="submit" class="btn btn-primary" onclick=" return withdrawNest()">Withdraw Nest</button>
+        </form>
+    </div>
+</div>
+</body>
+
+<script type="text/javascript">
+
+    function withdrawToken() {
+
+        if (!confirm("Are assets withdrawn confirmed?")) {
+            return false;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/withdraw/withdrawToken",
+            async: false,
+            data: $('#withdrawToken').serialize(),
+            success: function (result) {
+                if (result.msg) {
+                    alert(result.msg)
+                }
+                location.reload();
+            },
+            error: function (result) {
+                alert("The operation failure")
+            }
+        })
+    }
+
+    function withdrawNest() {
+        if (!confirm("Are assets withdrawn confirmed?")) {
+            return false;
+        }
+
+        $.ajax({
+            type: "POST",
+            url: "/withdraw/withdrawNest",
+            async: false,
+            data: $('#withdrawNest').serialize(),
+            success: function (result) {
+                if (result.msg) {
+                    alert(result.msg)
+                }
+                location.reload();
+            },
+            error: function (result) {
+                alert("The operation failure")
+            }
+        })
+    }
+
+
+</script>
+</html>
+
