@@ -20,7 +20,7 @@
 
 #### Preparation Before Start
 
-1. Implement price interface [PriceService]().
+1. Implement price interface [PriceService](https://github.com/NEST-Protocol/NEST-Oracle-V4.0-minner/blob/bsc/src/main/java/com/nest/ib/service/PriceService.java).
    * Provide the price of token0token1, that is, how many token1s is a token0 worth
 
 2. Get ready: wallet private key and related assets and nodes.

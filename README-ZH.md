@@ -22,7 +22,7 @@
 
 #### 启动前准备
 
-1. 实现价格接口[PriceService]()。
+1. 实现价格接口[PriceService](https://github.com/NEST-Protocol/NEST-Oracle-V4.0-minner/blob/bsc/src/main/java/com/nest/ib/service/PriceService.java)。
    * 获取token0Token1的价格，即1个token0价值多少个token1
 
 2. 准备好：钱包私钥及相关资产、节点。
