@@ -1,4 +1,4 @@
-### NEST 4.0 Automatic Quotation Program Operating Instructions
+### NEST 4.0 BSC Automatic Quotation Program Operating Instructions
 
 [toc]
 
