@@ -3,7 +3,7 @@ package com.nest.ib.constant;
 import java.math.BigInteger;
 
 /**
- * @author wll
+ * @author
  * @date 2020/12/30 14:24
  */
 public interface GasLimit {

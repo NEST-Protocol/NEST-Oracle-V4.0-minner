@@ -20,9 +20,5 @@ public interface Constant {
 
     BigInteger BIG_INTEGER_200K = BigInteger.valueOf(200000);
 
-    BigDecimal BIG_DECIMAL_1K = BigDecimal.valueOf(1000);
-
-    BigDecimal BIG_DECIMAL_TWO = BigDecimal.valueOf(2);
-
     BigInteger BIG_INTEGER_FIVE = BigInteger.valueOf(5);
 }

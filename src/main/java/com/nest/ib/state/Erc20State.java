@@ -181,7 +181,6 @@ public class Erc20State {
 
         if (token0Token1Pirce == null) {
             log.error("Price acquisition failed. Trading pair price set to NULL. Quote trading has been suspended");
-            token0Token1Pirce = null;
             return false;
         }
 

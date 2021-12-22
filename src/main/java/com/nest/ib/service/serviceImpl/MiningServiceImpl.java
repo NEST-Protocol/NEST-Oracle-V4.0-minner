@@ -186,7 +186,7 @@ public class MiningServiceImpl implements MiningService {
         // The number of ETH that needs to be typed into the contract
         BigInteger payableEthAmount = wallet.getPayableEthAmount();
 
-        log.info("POST quoted token0 quantity：{}, quoted {} quantity：{}, enter the number of contract ETH：{}", token0, erc20State.token.getSymbol(), token1, payableEthAmount);
+        log.info("POST quoted token0 quantity：{}, quoted {} quantity：{}, enter the number of contract ETH：{}", token0, erc20State.token1.getSymbol(), token1, payableEthAmount);
         log.info("Quote trading nonce：" + nonce);
 
         List<Type> typeList = Arrays.<Type>asList(

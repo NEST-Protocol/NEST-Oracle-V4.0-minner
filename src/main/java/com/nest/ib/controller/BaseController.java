@@ -11,12 +11,10 @@ import com.nest.ib.utils.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
 import org.web3j.crypto.Credentials;
 
-import java.math.BigDecimal;
 import java.math.BigInteger;
 
 /**
@@ -54,10 +52,7 @@ public class BaseController {
 
 
         mav.addObject("token", erc20State.token);
-        mav.addObject("nToken", erc20State.token1);
-
-        mav.addObject("ipAddress", HttpClientUtil.PROXY_IP);
-        mav.addObject("port", HttpClientUtil.PROXY_PORT);
+        mav.addObject("token1", erc20State.token1);
 
         mav.addObject("gasPriceState", gasPriceState);
 
@@ -78,21 +73,6 @@ public class BaseController {
         } else {
             return R.error("Node update failed. Please check if the node is available");
         }
-    }
-
-    /**
-     * Setting up the network agent
-     *
-     * @return
-     */
-    @PostMapping("/updateProxy")
-    public R updateProxy(@RequestParam(name = "ipAddress", required = false) String ipAddress,
-                         @RequestParam(name = "port", defaultValue = "0") int port) {
-        if (!StringUtils.isEmpty(ipAddress)) {
-            HttpClientUtil.PROXY_IP = ipAddress;
-        }
-        HttpClientUtil.PROXY_PORT = port;
-        return R.ok();
     }
 
     /**

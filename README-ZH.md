@@ -22,16 +22,16 @@
 
 #### 启动前准备
 
-1. 实现价格接口[PriceService](https://github.com/NEST-Protocol/NEST-Oracle-V3.6-minner/releases/tag/NEST-Oracle-V3.6-minner)。
+1. 实现价格接口[PriceService]()。
    * 获取token0Token1的价格，即1个token0价值多少个token1
 
 2. 准备好：钱包私钥及相关资产、节点。
    * 钱包私钥：
    通过助记词生成，可通过nestDapp注册。
    * 需要资产:
-   <br/>token0、token1以及报价需要抵押的NEST，每笔抵押10万NEST。
-   <br/>发送交易的gas消耗（ETH/BNB）
-   * 以太坊节点或BSC链节点。
+   <br/>token0、token1以及报价需要抵押的NEST，每笔报价需抵押10万NEST。
+   <br/>发送交易的gas消耗（BNB）
+   * BSC链节点。
 
 #### 启动和关闭
 
@@ -53,16 +53,17 @@
 5. gasPrice 倍数配置（在默认gasPrice基础上进行加倍，可根据实际情况进行调整）。
 6. 开启挖矿：
    * 以上配置完成后，便可开启挖矿，可以在后台日志查看报价时区块高度、报价数量、报价交易hash等信息。
-
+7. 取出资产
+   * 只有关闭的报价单资产才能取出，如需取出所有资产，请关闭所有报价单后再进行取出操作。
 
 #### 涉及合约接口@BSC
 | 功能 | 接口 | 
 | ---- | ---- |
-| 报价 | [post](https://github.com/NEST-Protocol/NEST-Oracle-V4.0/blob/main/contracts/interface/INestOpenMining.sol#L203) |
-| 获取报价单 | [list](https://github.com/NEST-Protocol/NEST-Oracle-V4.0/blob/main/contracts/interface/INestOpenMining.sol#L227) | 
-| 关闭报价单 | [close](https://github.com/NEST-Protocol/NEST-Oracle-V4.0/blob/main/contracts/interface/INestOpenMining.sol#L233) | 
-| 取出资产 | [withdraw](https://github.com/NEST-Protocol/NEST-Oracle-V4.0/blob/main/contracts/interface/INestOpenMining.sol#L249) | 
-| 预估出矿量 | [estimate](https://github.com/NEST-Protocol/NEST-Oracle-V4.0/blob/main/contracts/interface/INestOpenMining.sol#L254) | 
-| 查询解冻资产 | [balanceOf](https://github.com/NEST-Protocol/NEST-Oracle-V4.0/blob/main/contracts/interface/INestOpenMining.sol#L244) |
+| 报价 | [post](https://github.com/NEST-Protocol/NEST-Oracle-V4.0/blob/bsc/contracts/interface/INestOpenMining.sol#L203) |
+| 获取报价单 | [list](https://github.com/NEST-Protocol/NEST-Oracle-V4.0/blob/bsc/contracts/interface/INestOpenMining.sol#L227) | 
+| 关闭报价单 | [close](https://github.com/NEST-Protocol/NEST-Oracle-V4.0/blob/bsc/contracts/interface/INestOpenMining.sol#L233) | 
+| 取出资产 | [withdraw](https://github.com/NEST-Protocol/NEST-Oracle-V4.0/blob/bsc/contracts/interface/INestOpenMining.sol#L249) | 
+| 预估出矿量 | [estimate](https://github.com/NEST-Protocol/NEST-Oracle-V4.0/blob/bsc/contracts/interface/INestOpenMining.sol#L254) | 
+| 查询解冻资产 | [balanceOf](https://github.com/NEST-Protocol/NEST-Oracle-V4.0/blob/bsc/contracts/interface/INestOpenMining.sol#L244) |
 
 

@@ -31,7 +31,7 @@ public class NestProperties {
     private Erc20State erc20State;
 
     // bsc chainId
-    private long chainId;
+    private Long chainId;
 
     private String nestTokenAddress;
 
@@ -193,11 +193,11 @@ public class NestProperties {
         this.miningFee = miningFee;
     }
 
-    public long getChainId() {
+    public Long getChainId() {
         return chainId;
     }
 
-    public void setChainId(long chainId) {
+    public void setChainId(Long chainId) {
         this.chainId = chainId;
     }
 }

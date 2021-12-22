@@ -210,7 +210,7 @@ public class WalletHelper {
                 BigInteger nestAmount = nestNumBal.multiply(Constant.UNIT_INT18);
                 freezed.addNestAmount(nestAmount);
 
-                // Ethnumbal is the amount of ETH left
+                // Ethnumbal is the amount of token0 left
                 BigInteger freezedToken0 = priceSheet.getEthNumBal().multiply(erc20State.getNeedToken0());
                 freezed.addTokenAmount(freezedToken0);
 

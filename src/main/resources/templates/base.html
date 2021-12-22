@@ -49,35 +49,7 @@
 
 <div class="row" style="border-top: red 1px dotted ;margin-top: 20px">
     <div class="col-lg-12">
-        <label><h4>Step 2. Network proxy configuration (not required)</h4></label>
-        <p></p>
-        <p></p>
-        <form class="form-inline" id="updateProxy">
-
-            <div class="form-group">
-                <span>Set network proxy IP (default 127.0.0.1, not required) :</span>
-                <input type="text" class="form-control" id="ipAddress" name="ipAddress"
-                       th:value="${ipAddress}"
-                       placeholder="Set up the network proxy IP">
-            </div>
-            <p></p>
-            <div class="form-group">
-                <span>Set the network proxy port (port 0 means no proxy is used, default is 0, not required) :</span>
-                <input type="text" class="form-control" id="port" name="port"
-                       th:value="${port}"
-                       placeholder="Set up the network proxy port">
-            </div>
-            <p></p>
-
-            <button type="submit" class="btn btn-primary" onclick="return updateProxy()">update
-            </button>
-        </form>
-    </div>
-</div>
-
-<div class="row" style="border-top: red 1px dotted ;margin-top: 20px">
-    <div class="col-lg-12">
-        <label><h4>Step 3. Quotation Token and Price Source Configuration (required)</h4></label>
+        <label><h4>Step 2. Quotation channel configuration (required)</h4></label>
         <form class="form-inline" id="addToken">
             <div class="form-group line">
                 <label>Please fill in the quotation channel ID</label>
@@ -88,7 +60,7 @@
                        th:value="${channelId}"
                        id="channelId" name="channelId" placeholder="Please fill in the quotation channel ID">
                 <span>Current token0 name：[[${token.symbol == null?'':token.symbol}]]</span>
-                <span>Current token1 name：[[${nToken.symbol == null?'':nToken.symbol}]]</span>
+                <span>Current token1 name：[[${token1.symbol == null?'':token1.symbol}]]</span>
 
             </div>
             <br/>
@@ -99,7 +71,7 @@
 
 <div class="row" style="border-top: red 1px dotted ;margin-top: 20px">
     <div class="col-lg-12">
-        <label><h4>Step 4. Account private key configuration (required)</h4></label>
+        <label><h4>Step 3. Account private key configuration (required)</h4></label>
         <p></p>
         <form class="form-inline" id="addWallet">
             <div class="form-group">
@@ -113,30 +85,30 @@
             <thead>
             <tr>
                 <th rowspan="2">The account address</th>
-                <th th:colspan="${nToken.getSymbol().equalsIgnoreCase('NEST')?3:4}">Total assets of account</th>
-                <th th:colspan="${nToken.getSymbol().equalsIgnoreCase('NEST')?3:4}">Account balance</th>
-                <th th:colspan="${nToken.getSymbol().equalsIgnoreCase('NEST')?3:4}">Unfrozen assets</th>
+                <th th:colspan="${token1.getSymbol().equalsIgnoreCase('NEST')?3:4}">Total assets of account</th>
+                <th th:colspan="${token1.getSymbol().equalsIgnoreCase('NEST')?3:4}">Account balance</th>
+                <th th:colspan="${token1.getSymbol().equalsIgnoreCase('NEST')?3:4}">Unfrozen assets</th>
                 <th colspan="4">Frozen assets</th>
             </tr>
             <tr>
                 <th>ETH</th>
                 <th>[[${token.symbol}]]</th>
-                <th>[[${nToken.symbol}]]</th>
-                <th th:if="${!nToken.getSymbol().equalsIgnoreCase('NEST')}">NEST</th>
+                <th>[[${token1.symbol}]]</th>
+                <th th:if="${!token1.getSymbol().equalsIgnoreCase('NEST')}">NEST</th>
 
                 <th>ETH</th>
                 <th>[[${token.symbol}]]</th>
-                <th>[[${nToken.symbol}]]</th>
-                <th th:if="${!nToken.getSymbol().equalsIgnoreCase('NEST')}">NEST</th>
+                <th>[[${token1.symbol}]]</th>
+                <th th:if="${!token1.getSymbol().equalsIgnoreCase('NEST')}">NEST</th>
 
                 <th>ETH</th>
                 <th>[[${token.symbol}]]</th>
-                <th>[[${nToken.symbol}]]</th>
-                <th th:if="${!nToken.getSymbol().equalsIgnoreCase('NEST')}">NEST</th>
+                <th>[[${token1.symbol}]]</th>
+                <th th:if="${!token1.getSymbol().equalsIgnoreCase('NEST')}">NEST</th>
 
                 <th>ETH</th>
                 <th>[[${token.symbol}]]</th>
-                <th>[[${nToken.symbol}]]</th>
+                <th>[[${token1.symbol}]]</th>
                 <th>NEST</th>
             </tr>
             </thead>
@@ -147,25 +119,25 @@
 
                 <td th:text="${wallet.getTotal().getEthAmountUnit()}"></td>
                 <td th:text="${wallet.getTotal().getTokenAmountUnit(token.getDecPowTen())}"></td>
-                <td th:text="${wallet.getTotal().getToken1AmountUnit(nToken.getDecPowTen())}"></td>
-                <td th:if="${!nToken.getSymbol().equalsIgnoreCase('NEST')}"
+                <td th:text="${wallet.getTotal().getToken1AmountUnit(token1.getDecPowTen())}"></td>
+                <td th:if="${!token1.getSymbol().equalsIgnoreCase('NEST')}"
                     th:text="${wallet.getTotal().getNestAmountUnit()}"></td>
 
                 <td th:text="${wallet.getAccount().getEthAmountUnit()}"></td>
                 <td th:text="${wallet.getAccount().getTokenAmountUnit(token.getDecPowTen())}"></td>
-                <td th:text="${wallet.getAccount().getToken1AmountUnit(nToken.getDecPowTen())}"></td>
-                <td th:if="${!nToken.getSymbol().equalsIgnoreCase('NEST')}"
+                <td th:text="${wallet.getAccount().getToken1AmountUnit(token1.getDecPowTen())}"></td>
+                <td th:if="${!token1.getSymbol().equalsIgnoreCase('NEST')}"
                     th:text="${wallet.getAccount().getNestAmountUnit()}"></td>
 
                 <td th:text="${wallet.getClosed().getEthAmountUnit()}"></td>
                 <td th:text="${wallet.getClosed().getTokenAmountUnit(token.getDecPowTen())}"></td>
-                <td th:text="${wallet.getClosed().getToken1AmountUnit(nToken.getDecPowTen())}"></td>
-                <td th:if="${!nToken.getSymbol().equalsIgnoreCase('NEST')}"
+                <td th:text="${wallet.getClosed().getToken1AmountUnit(token1.getDecPowTen())}"></td>
+                <td th:if="${!token1.getSymbol().equalsIgnoreCase('NEST')}"
                     th:text="${wallet.getClosed().getNestAmountUnit()}"></td>
 
                 <td th:text="${wallet.getFreezed().getEthAmountUnit()}"></td>
                 <td th:text="${wallet.getFreezed().getTokenAmountUnit(token.getDecPowTen())}"></td>
-                <td th:text="${wallet.getFreezed().getToken1AmountUnit(nToken.getDecPowTen())}"></td>
+                <td th:text="${wallet.getFreezed().getToken1AmountUnit(token1.getDecPowTen())}"></td>
                 <td th:text="${wallet.getFreezed().getNestAmountUnit()}"></td>
             </tr>
             </tbody>
@@ -176,24 +148,6 @@
 </body>
 
 <script type="text/javascript">
-
-    function updateProxy() {
-        $.ajax({
-            type: "POST",
-            url: "/base/updateProxy",
-            async: false,
-            data: $('#updateProxy').serialize(),
-            success: function (result) {
-                if (result.msg) {
-                    alert(result.msg)
-                }
-                location.replace(location);
-            },
-            error: function (result) {
-                alert("The operation failure")
-            }
-        })
-    }
 
 
     function addToken() {

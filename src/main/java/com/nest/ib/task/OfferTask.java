@@ -1,4 +1,4 @@
-package com.nest.ib.vo;
+package com.nest.ib.task;
 
 import com.nest.ib.model.Wallet;
 import com.nest.ib.service.MiningService;
