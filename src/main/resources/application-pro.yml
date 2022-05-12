@@ -3,12 +3,12 @@ spring:
     cache: true
 
 nest:
-  # bsc
-  chainId: 56
-  # BSC NEST
-  nestTokenAddress: "0x98f8669f6481ebb341b522fcd3663f79a3d1a6a7"
+  # eth
+  chainId: 1
+  # ETH NEST
+  nestTokenAddress: "0x04abEdA201850aC0124161F037Efd70c74ddC74C"
   # quote mining contract address
-  nestMiningAddress: "0x09CE0e021195BA2c1CDE62A8B187abf810951540"
+  nestMiningAddress: "0xE544cF993C7d477C7ef8E91D28aCA250D135aa03"
 
   # Calculate the quoted fee ratio
   miningFeeRateInflateFactor: 10000

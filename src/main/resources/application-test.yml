@@ -3,11 +3,11 @@ spring:
     cache: true
 
 nest:
-  # bsc test
-  chainId: 97
-  nestTokenAddress: "0x821edD79cc386E56FeC9DA5793b87a3A52373cdE"
+  # rinkeby
+  chainId: 4
+  nestTokenAddress: "0xE313F3f49B647fBEDDC5F2389Edb5c93CBf4EE25"
   # quote mining contract address
-  nestMiningAddress: "0xF2f9E62f52389EF223f5Fa8b9926e95386935277"
+  nestMiningAddress: "0xc08E6A853241B9a08225EECf93F3b279FA7A1bE7"
 
 
   # Calculate the quoted fee ratio
