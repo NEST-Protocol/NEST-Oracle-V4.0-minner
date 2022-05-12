@@ -57,10 +57,10 @@
 #### Contract interface @BSC
 | Function | Interface | 
 | ---- | ---- |
-| Quote price | [post](https://github.com/NEST-Protocol/NEST-Oracle-V4.0/blob/bsc/contracts/interfaces/INestBatchMining.sol#L182) |
-| Get quotation list | [list](https://github.com/NEST-Protocol/NEST-Oracle-V4.0/blob/bsc/contracts/interfaces/INestBatchMining.sol#L200) | 
-| Close quotation | [close](https://github.com/NEST-Protocol/NEST-Oracle-V4.0/blob/bsc/contracts/interfaces/INestBatchMining.sol#L212) | 
-| Withdraw assets | [withdraw](https://github.com/NEST-Protocol/NEST-Oracle-V4.0/blob/bsc/contracts/interfaces/INestBatchMining.sol#L223) | 
-| Estimated ore drawing | [estimate](https://github.com/NEST-Protocol/NEST-Oracle-V4.0/blob/bsc/contracts/interfaces/INestBatchMining.sol#L228) | 
-| Query unfreeze assets | [balanceOf](https://github.com/NEST-Protocol/NEST-Oracle-V4.0/blob/bsc/contracts/interfaces/INestBatchMining.sol#L218) |
+| Quote price | [post](https://github.com/NEST-Protocol/NEST-Oracle-V4.0/blob/main/contracts/interfaces/INestBatchMining.sol#L182) |
+| Get quotation list | [list](https://github.com/NEST-Protocol/NEST-Oracle-V4.0/blob/main/contracts/interfaces/INestBatchMining.sol#L200) | 
+| Close quotation | [close](https://github.com/NEST-Protocol/NEST-Oracle-V4.0/blob/main/contracts/interfaces/INestBatchMining.sol#L212) | 
+| Withdraw assets | [withdraw](https://github.com/NEST-Protocol/NEST-Oracle-V4.0/blob/main/contracts/interfaces/INestBatchMining.sol#L223) | 
+| Estimated ore drawing | [estimate](https://github.com/NEST-Protocol/NEST-Oracle-V4.0/blob/main/contracts/interfaces/INestBatchMining.sol#L228) | 
+| Query unfreeze assets | [balanceOf](https://github.com/NEST-Protocol/NEST-Oracle-V4.0/blob/main/contracts/interfaces/INestBatchMining.sol#L218) |
 
